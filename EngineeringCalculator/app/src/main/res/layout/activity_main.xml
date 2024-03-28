@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:id="@+id/simple"
+    android:id="@+id/science"
     android:background="@drawable/cool_gradient">
 
     <android.widget.Button
@@ -20,19 +19,19 @@
 
     <TextView
         android:id="@+id/textViewInput"
-        style="@style/TextViewInputStyle"
+        style="@style/SmallTextViewInputStyle"
         android:text="@string/_0"
+        app:layout_constraintBottom_toTopOf="@+id/textViewResult"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textViewResult" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewResult"
-        style="@style/TextViewResultStyle"
+        style="@style/SmallTextViewResultStyle"
         android:text="@string/_0"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInput"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewInput" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -45,10 +44,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/scienceModeFragment"
+            android:name="com.example.engineeringcalculator.fragments.ScienceModeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/baseModeFragment"
             android:name="com.example.engineeringcalculator.fragments.BaseModeFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
