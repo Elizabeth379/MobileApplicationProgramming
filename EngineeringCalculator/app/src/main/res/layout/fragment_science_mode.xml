@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ScienceModeFragment">
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <android.widget.Button
+                android:id="@+id/btn_sin"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_sin" />
+            <android.widget.Button
+                android:id="@+id/btn_cos"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_cos" />
+            <android.widget.Button
+                android:id="@+id/btn_tan"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_tan" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.widget.Button
+                android:id="@+id/btn_rad"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_rad" />
+            <android.widget.Button
+                android:id="@+id/btn_sqrt"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_sqrt" />
+            <android.widget.Button
+                android:id="@+id/btn_powerMinOne"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_powerMinOne" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.widget.Button
+                android:id="@+id/btn_ln"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_ln" />
+            <android.widget.Button
+                android:id="@+id/btn_lg"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_lg" />
+            <android.widget.Button
+                android:id="@+id/btn_log"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_log" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.widget.Button
+                android:id="@+id/btn_expPowX"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_expPowX" />
+            <android.widget.Button
+                android:id="@+id/btn_square"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_square" />
+            <android.widget.Button
+                android:id="@+id/btn_power"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_power" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.widget.Button
+                android:id="@+id/btn_module"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_module" />
+            <android.widget.Button
+                android:id="@+id/btn_pi"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_pi" />
+            <android.widget.Button
+                android:id="@+id/btn_exp"
+                style="@style/ButtonFunctionStyle"
+                android:text="@string/btn_exp" />
+        </TableRow>
+    </TableLayout>
+
+</FrameLayout>
