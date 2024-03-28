@@ -2,7 +2,7 @@
     <string name="app_name">EngineeringCalculator</string>
 
     <string name="_0">0</string>
-    <string name="btn_2nd">2nd</string>
+    <string name="btn_2nd">swap</string>
     <string name="btn_ac">AC</string>
     <string name="btn_back">back</string>
     <string name="btn_division">/</string>
