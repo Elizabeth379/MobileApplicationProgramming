@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.BaseModeFragment">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false">
+            <android.widget.Button
+                android:id="@+id/btn_ac"
+                style="@style/ButtonOperationStyle"
+                android:text="@string/btn_ac" />
+            <android.widget.Button
+                android:id="@+id/btn_parenthesis_l"
+                style="@style/ButtonCommandStyle"
+                android:text="@string/btn_parenthesis_l" />
+            <android.widget.Button
+                android:id="@+id/btn_parenthesis_r"
+                style="@style/ButtonCommandStyle"
+                android:text="@string/btn_parenthesis_r" />
+            <android.widget.Button
+                android:id="@+id/btn_division"
+                style="@style/ButtonCommandStyle"
+                android:text="@string/btn_division" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.widget.Button
+                android:id="@+id/btn_7"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_7" />
+            <android.widget.Button
+                android:id="@+id/btn_8"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_8" />
+            <android.widget.Button
+                android:id="@+id/btn_9"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_9" />
+            <android.widget.Button
+                android:id="@+id/btn_multiply"
+                style="@style/ButtonCommandStyle"
+                android:text="@string/btn_multiply" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.widget.Button
+                android:id="@+id/btn_4"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_4" />
+            <android.widget.Button
+                android:id="@+id/btn_5"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_5" />
+            <android.widget.Button
+                android:id="@+id/btn_6"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_6" />
+            <android.widget.Button
+                android:id="@+id/btn_minus"
+                style="@style/ButtonCommandStyle"
+                android:text="@string/btn_minus" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.widget.Button
+                android:id="@+id/btn_1"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_1" />
+            <android.widget.Button
+                android:id="@+id/btn_2"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_2" />
+            <android.widget.Button
+                android:id="@+id/btn_3"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_3" />
+            <android.widget.Button
+                android:id="@+id/btn_plus"
+                style="@style/ButtonCommandStyle"
+                android:text="@string/btn_plus" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.widget.Button
+                android:id="@+id/btn_back"
+                style="@style/ButtonOperationStyle"
+                android:text="@string/btn_back" />
+            <android.widget.Button
+                android:id="@+id/btn_0"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_0" />
+            <android.widget.Button
+                android:id="@+id/btn_dot"
+                style="@style/ButtonStyle"
+                android:text="@string/btn_dot" />
+            <android.widget.Button
+                android:id="@+id/btn_equal"
+                style="@style/ButtonEqualStyle"
+                android:text="@string/btn_equal" />
+        </TableRow>
+    </TableLayout>
+
+</FrameLayout>
