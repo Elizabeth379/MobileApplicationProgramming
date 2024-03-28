@@ -23,5 +23,20 @@
     <string name="btn_equal">=</string>
     <string name="btn_parenthesis_l">(</string>
     <string name="btn_parenthesis_r">)</string>
+    <string name="btn_rad">rad</string>
+    <string name="btn_sqrt">sqrt</string>
+    <string name="btn_sin">sin</string>
+    <string name="btn_cos">cos</string>
+    <string name="btn_tan">tan</string>
+    <string name="btn_ln">ln</string>
+    <string name="btn_lg">lg</string>
+    <string name="btn_log">log</string>
+    <string name="btn_powerMinOne">1/x</string>
+    <string name="btn_expPowX">e^x</string>
+    <string name="btn_square">x^2</string>
+    <string name="btn_power">x^y</string>
+    <string name="btn_module">|x|</string>
+    <string name="btn_pi">pi</string>
+    <string name="btn_exp">e</string>
 
 </resources>
