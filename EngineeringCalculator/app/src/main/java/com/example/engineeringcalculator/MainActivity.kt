@@ -66,6 +66,10 @@ class MainActivity : AppCompatActivity(), Connector {
         inputText.setMovementMethod(ScrollingMovementMethod())
     }
 
+    fun getinputText(): TextView {
+        return inputText
+    }
+
     override fun getCalculator(): Calculator { //Interface function
         return calculator
     }

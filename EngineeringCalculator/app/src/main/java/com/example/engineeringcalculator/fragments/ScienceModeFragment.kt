@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.example.engineeringcalculator.calculations.Calculator
 import com.example.engineeringcalculator.calculations.Operations
+import android.widget.TextView
+import com.example.engineeringcalculator.MainActivity
+
 
 import com.example.engineeringcalculator.Connector
 import com.example.engineeringcalculator.R
@@ -34,6 +37,7 @@ class ScienceModeFragment : Fragment() {
 
     private lateinit var calculator : Calculator
 
+    private var mainActivity: MainActivity? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -89,7 +93,12 @@ class ScienceModeFragment : Fragment() {
         btn_square = view.findViewById((R.id.btn_square))
         btn_square.setOnClickListener{
             calculator.appendOperation(Operations.POWER)
+            val textView = mainActivity?.getinputText()
             calculator.appendNumber("2")
+            if(textView?.text.toString() == "2"){
+                calculator.delete()
+            }
+
         }
         btn_power = view.findViewById((R.id.btn_power))
         btn_power.setOnClickListener{
@@ -123,5 +132,8 @@ class ScienceModeFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activ = getActivity() as Connector?
+        if (context is MainActivity) {
+            mainActivity = context
+        }
     }
 }
