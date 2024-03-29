@@ -42,7 +42,6 @@ class  CalculationBlock(var resultFunction: (Double) -> Double,
     fun appendNumber(char: String) {
         if (isPrimitive) {
             if (number.length >= 15) {
-                // Достигнут лимит в 15 символов, прекратить добавление
                 return
             }
 
