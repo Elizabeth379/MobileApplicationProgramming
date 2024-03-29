@@ -44,6 +44,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/scienceModeFragment"
+            android:name="com.example.engineeringcalculator.fragments.ScienceModeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/baseModeFragment"
             android:name="com.example.engineeringcalculator.fragments.BaseModeFragment"
             android:layout_width="wrap_content"
