@@ -39,36 +39,37 @@ class  CalculationBlock(var resultFunction: (Double) -> Double,
         this.requiresBrackets = requiresBrackets
     }
 
-    fun appendNumber(char: String){
-        if(isPrimitive){
-            if(number == "0"){
-                if(char == "0"){
-                    return
-                }
-                else{
-                    number = char
-                }
+    fun appendNumber(char: String) {
+        if (isPrimitive) {
+            if (number.length >= 15) {
+                // Достигнут лимит в 15 символов, прекратить добавление
+                return
             }
-            else{
-                if(number == ""){
+
+            if (number == "0") {
+                if (char == "0") {
+                    return
+                } else {
                     number = char
                 }
-                else{
-                    if(char != "π" && char != "e" && !number.contains("π", false) && number[0] != 'e'){
+            } else {
+                if (number == "") {
+                    number = char
+                } else {
+                    if (char != "π" && char != "e" && !number.contains("π", false) && number[0] != 'e') {
                         number += char
-                    }
-                    else if(char == "e"){
-                        if(!number.contains("e") && number.last() != '.'){
+                    } else if (char == "e") {
+                        if (!number.contains("e") && number.last() != '.') {
                             number += char
                         }
-                    }
-                    else if(number.length > 1 && number.subSequence(0, 2) == "πe" && char != "π"){
+                    } else if (number.length > 1 && number.subSequence(0, 2) == "πe" && char != "π") {
                         number += char
                     }
                 }
             }
         }
     }
+
 
     fun setFloat(){
         if(number != "" && number != "e" && number != "π"){
