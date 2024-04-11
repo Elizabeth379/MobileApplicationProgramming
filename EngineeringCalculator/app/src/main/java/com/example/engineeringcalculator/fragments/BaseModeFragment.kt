@@ -13,7 +13,7 @@ import com.example.engineeringcalculator.calculations.Calculator
 import com.example.engineeringcalculator.calculations.Operations
 import com.example.engineeringcalculator.Connector
 import com.example.engineeringcalculator.R
-
+import android.view.KeyEvent
 
 class BaseModeFragment : Fragment() {
     private lateinit var btn_0: Button
@@ -49,6 +49,22 @@ class BaseModeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_base_mode, container, false)
         setupLayoutFor(view)
+
+        view.isFocusableInTouchMode = true
+        view.requestFocus()
+        view.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN && event.action == KeyEvent.ACTION_DOWN) {
+                calculator.delete()
+                true
+            } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP && event.action == KeyEvent.ACTION_DOWN) {
+                calculator.equals()
+                true
+            } else {
+                false
+            }
+
+        }
+
         return view
     }
 
