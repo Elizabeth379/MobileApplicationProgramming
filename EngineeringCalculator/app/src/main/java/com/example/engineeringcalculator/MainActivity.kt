@@ -14,12 +14,23 @@ import android.os.Vibrator
 import com.example.engineeringcalculator.calculations.Calculator
 import android.view.GestureDetector
 import android.view.MotionEvent
-import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GestureDetectorCompat
 import com.example.engineeringcalculator.calculations.Operations
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 
-class MainActivity : AppCompatActivity(), Connector {
+class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
+    private var sensorManager: SensorManager? = null
+    private var accelerometer: Sensor? = null
+    private var lastTime: Long = 0
+    private var lastX: Float = 0.0f
+    private var lastY: Float = 0.0f
+    private var lastZ: Float = 0.0f
+    private val shakeThreshold = 600
+
     companion object {
         private var calculator = Calculator()
 
@@ -85,6 +96,50 @@ class MainActivity : AppCompatActivity(), Connector {
             lSwipeDetector.onTouchEvent(event)
             true
         }
+
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        accelerometer = sensorManager?.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        sensorManager?.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
+
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        // Не требуется реализация
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
+            val currentTime = System.currentTimeMillis()
+            val diffTime = currentTime - lastTime
+            if (diffTime > 100) {
+                val x = event.values[0]
+                val y = event.values[1]
+                val z = event.values[2]
+                val speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 10000
+                if (speed > shakeThreshold) {
+                    onShake()
+                }
+                lastX = x
+                lastY = y
+                lastZ = z
+                lastTime = currentTime
+            }
+        }
+    }
+
+    private fun onShake() {
+        Toast.makeText(this, "Device shook! Clearing!", Toast.LENGTH_SHORT).show()
+        calculator.clear()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sensorManager?.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager?.unregisterListener(this)
     }
 
     inner class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
