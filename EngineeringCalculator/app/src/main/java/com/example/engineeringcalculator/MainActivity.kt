@@ -21,6 +21,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
     private var sensorManager: SensorManager? = null
@@ -66,6 +67,8 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
         setContentView(R.layout.activity_main)
         if (isDemo())
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        FirebaseApp.initializeApp(this)
 
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         inputText = findViewById(R.id.textViewInput)
