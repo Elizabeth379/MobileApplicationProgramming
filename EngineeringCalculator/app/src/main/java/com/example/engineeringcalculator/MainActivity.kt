@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.content.pm.ActivityInfo
 import android.text.method.ScrollingMovementMethod
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
     private lateinit var inputText : TextView
     private lateinit var resultText : TextView
     private lateinit var btn_2nd: Button
+    private lateinit var btn_theme: Button
     private lateinit var vibrator : Vibrator
     private lateinit var lSwipeDetector: GestureDetectorCompat
     private lateinit var mainLayout: ConstraintLayout
@@ -90,6 +92,14 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
             }
         }
         btn_2nd.bringToFront()
+
+        btn_theme = findViewById(R.id.btn_theme)
+        btn_theme.setOnClickListener{
+            val i = Intent(this, ThemeActivity::class.java)
+            startActivity(i)
+            finish()
+        }
+        btn_theme.bringToFront()
 
         inputText.setMovementMethod(ScrollingMovementMethod())
 

@@ -17,6 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <android.widget.Button
+        android:id="@+id/btn_theme"
+        style="@style/Button2ndStyle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="false"
+        android:text="@string/btn_theme"
+        app:layout_constraintStart_toEndOf="@+id/btn_2nd"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textViewInput"
         style="@style/SmallTextViewInputStyle"
