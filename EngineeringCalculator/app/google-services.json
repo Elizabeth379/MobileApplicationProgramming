@@ -1,32 +1,13 @@
 {
   "project_info": {
-    "project_number": "66337252935",
-    "project_id": "engineering-calculator-15529",
-    "storage_bucket": "engineering-calculator-15529.appspot.com"
+    "project_number": "740897665292",
+    "project_id": "calculator-77e85",
+    "storage_bucket": "calculator-77e85.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:66337252935:android:bd1e937c205b6b2959b362",
-        "android_client_info": {
-          "package_name": "com.anime.engineeringcalculator"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyArqA4WzIO0Fyrl8R6aP7PnFqmRfEGiw4w"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:66337252935:android:a3272d221f328fcc59b362",
+        "mobilesdk_app_id": "1:740897665292:android:18e3f5cf617a57b7e25929",
         "android_client_info": {
           "package_name": "com.example.engineeringcalculator"
         }
@@ -34,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyArqA4WzIO0Fyrl8R6aP7PnFqmRfEGiw4w"
+          "current_key": "AIzaSyA3jcV4eWo7bAZ-L0EKQGhvZl-qQnXEmPo"
         }
       ],
       "services": {

@@ -3,6 +3,7 @@ package com.example.engineeringcalculator.fragments
 import android.content.Context
 import android.os.Bundle
 import android.os.Vibrator
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,11 @@ import com.example.engineeringcalculator.calculations.Operations
 import com.example.engineeringcalculator.Connector
 import com.example.engineeringcalculator.R
 import android.view.KeyEvent
+import android.widget.TextView
+import com.example.engineeringcalculator.MainActivity
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class BaseModeFragment : Fragment() {
     private lateinit var btn_0: Button
@@ -36,6 +42,11 @@ class BaseModeFragment : Fragment() {
     private lateinit var btn_equal: Button
     private lateinit var btn_parenthesis_l: Button
     private lateinit var btn_parenthesis_r: Button
+    private lateinit var inputText : TextView
+    val db = Firebase.firestore
+    private var mainActivity: MainActivity? = null
+
+    val stringList: ArrayList<String> = ArrayList()
 
     private lateinit var calculator : Calculator
     private lateinit var vibrator : Vibrator
@@ -73,70 +84,105 @@ class BaseModeFragment : Fragment() {
         btn_0 = view.findViewById(R.id.btn_0)
         btn_0.setOnClickListener{
             calculator.appendNumber("0")
+            stringList.add("0")
         }
         btn_1 = view.findViewById(R.id.btn_1)
         btn_1.setOnClickListener{
             calculator.appendNumber("1")
+            stringList.add("1")
         }
         btn_2 = view.findViewById(R.id.btn_2)
         btn_2.setOnClickListener{
             calculator.appendNumber("2")
+            stringList.add("2")
         }
         btn_3 = view.findViewById(R.id.btn_3)
         btn_3.setOnClickListener{
             calculator.appendNumber("3")
+            stringList.add("3")
         }
         btn_4 = view.findViewById(R.id.btn_4)
         btn_4.setOnClickListener{
             calculator.appendNumber("4")
+            stringList.add("4")
         }
         btn_5 = view.findViewById(R.id.btn_5)
         btn_5.setOnClickListener{
             calculator.appendNumber("5")
+            stringList.add("5")
         }
         btn_6 = view.findViewById(R.id.btn_6)
         btn_6.setOnClickListener{
             calculator.appendNumber("6")
+            stringList.add("6")
         }
         btn_7 = view.findViewById(R.id.btn_7)
         btn_7.setOnClickListener{
             calculator.appendNumber("7")
+            stringList.add("7")
         }
         btn_8 = view.findViewById(R.id.btn_8)
         btn_8.setOnClickListener{
             calculator.appendNumber("8")
+            stringList.add("8")
         }
         btn_9 = view.findViewById(R.id.btn_9)
         btn_9.setOnClickListener{
             calculator.appendNumber("9")
+            stringList.add("9")
         }
 
         //Dot, Back, AC, (, )
         btn_dot = view.findViewById(R.id.btn_dot)
         btn_dot.setOnClickListener {
             calculator.setFloat()
+            stringList.add(".")
         }
         btn_back = view.findViewById(R.id.btn_back)
         btn_back.setOnClickListener{
             calculator.delete()
+            if (stringList.isNotEmpty()) {
+                stringList.removeAt(stringList.size - 1)
+            }
         }
         btn_ac = view.findViewById(R.id.btn_ac)
         btn_ac.setOnClickListener{
             calculator.clear()
+            stringList.clear()
         }
         btn_parenthesis_l = view.findViewById(R.id.btn_parenthesis_l)
         btn_parenthesis_l.setOnClickListener{
             calculator.appendFunction("(") { n1 : Double -> n1}
+            stringList.add("(")
         }
         btn_parenthesis_r = view.findViewById(R.id.btn_parenthesis_r)
         btn_parenthesis_r.setOnClickListener{
             calculator.complete()
+            stringList.add(")")
         }
 
         //Math operations
         btn_equal = view.findViewById(R.id.btn_equal)
         btn_equal.setOnClickListener{
+             val expr: String = stringList.joinToString(separator = "")
+
+            val resultData = hashMapOf(
+                "expression" to expr,
+                "timestamp" to FieldValue.serverTimestamp()
+            )
+
+            db.collection("results")
+                .add(resultData)
+                .addOnSuccessListener {
+
+                }
+                .addOnFailureListener { e ->
+                    Log.d("12", "Error to write")
+                }
+            stringList.clear()
             calculator.equals()
+            stringList.add(calculator.res)
+
         }
         btn_plus = view.findViewById(R.id.btn_plus)
         btn_plus.setOnClickListener {
@@ -145,19 +191,25 @@ class BaseModeFragment : Fragment() {
                 Toast.makeText(getContext(), "Sorry, you need to buy full version :(",
                     Toast.LENGTH_SHORT).show()
             }
-            else
+            else{
+                stringList.add("+")
                 calculator.appendOperation(Operations.ADD)
+
+            }
         }
         btn_minus = view.findViewById(R.id.btn_minus)
         btn_minus.setOnClickListener{
+            stringList.add("-")
             calculator.appendOperation(Operations.SUBTRACT)
         }
         btn_multiply = view.findViewById(R.id.btn_multiply)
         btn_multiply.setOnClickListener{
+            stringList.add("*")
             calculator.appendOperation(Operations.MULTIPLY)
         }
         btn_division = view.findViewById(R.id.btn_division)
         btn_division.setOnClickListener{
+            stringList.add("/")
             calculator.appendOperation(Operations.DIVIDE)
         }
 

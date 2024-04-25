@@ -1,11 +1,17 @@
 package com.example.engineeringcalculator.calculations
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.*
 import kotlin.math.round
+import com.example.engineeringcalculator.Connector
 
 class Calculator {
     private val defaultFunction: (Double) -> (Double) = {res:Double -> res}
@@ -13,6 +19,8 @@ class Calculator {
     var currentBlock: CalculationBlock = mainBlock
     private var inputTextView: TextView? = null
     private var resultTextView: TextView? = null
+    val db = Firebase.firestore
+    lateinit var res: String
 
 
     fun appendNumber(char: String){
@@ -203,7 +211,7 @@ class Calculator {
 
     fun equals(){
         val seq = resultTextView?.text ?: return
-        var res = seq.toString().replace("= ", "")
+        res = seq.toString().replace("= ", "")
         if(res.contains("Infinity") || res == "NaN" || res == "Error"){
             return
         }
@@ -219,6 +227,7 @@ class Calculator {
         update()
         resultTextView?.visibility = GONE
         resultTextView?.text = inputTextView?.text
+
     }
 
     private fun numToString(n: Double): String{
