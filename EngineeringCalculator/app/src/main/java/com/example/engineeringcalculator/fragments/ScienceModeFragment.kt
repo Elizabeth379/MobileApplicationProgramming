@@ -52,42 +52,52 @@ class ScienceModeFragment : Fragment() {
     private fun setupLayoutFor(view: View) {
         btn_sin = view.findViewById((R.id.btn_sin))
         btn_sin.setOnClickListener{
+            BaseModeFragment.stringList.add("sin(")
             calculator.appendFunction("sin(") { n1 : Double -> (sin(n1)) }
         }
         btn_cos = view.findViewById((R.id.btn_cos))
         btn_cos.setOnClickListener{
+            BaseModeFragment.stringList.add("cos(")
             calculator.appendFunction("cos(") { n1 : Double -> (cos(n1)) }
         }
         btn_tan = view.findViewById((R.id.btn_tan))
         btn_tan.setOnClickListener{
+            BaseModeFragment.stringList.add("tan(")
             calculator.appendFunction("tan(") { n1 : Double -> (tan(n1)) }
         }
         btn_rad = view.findViewById((R.id.btn_rad))
         btn_rad.setOnClickListener{
+            BaseModeFragment.stringList.add("rad(")
             calculator.appendFunction("rad(") { n1 : Double -> (Math.toRadians(n1)) }
         }
         btn_sqrt = view.findViewById((R.id.btn_sqrt))
         btn_sqrt.setOnClickListener{
+            BaseModeFragment.stringList.add("sqrt(")
             calculator.appendFunction("sqrt(") { n1 : Double -> (sqrt(n1)) }
         }
         btn_ln = view.findViewById((R.id.btn_ln))
         btn_ln.setOnClickListener{
+            BaseModeFragment.stringList.add("ln(")
             calculator.appendFunction("ln(") { n1 : Double -> (ln(n1)) }
         }
         btn_log = view.findViewById((R.id.btn_log))
         btn_log.setOnClickListener{
+            BaseModeFragment.stringList.add("log(")
             calculator.appendFunction("log(") { n1 : Double -> (log2(n1)) }
         }
         btn_lg = view.findViewById((R.id.btn_lg))
         btn_lg.setOnClickListener{
+            BaseModeFragment.stringList.add("lg(")
             calculator.appendFunction("lg(") { n1 : Double -> (log10(n1)) }
         }
         btn_powerMinOne = view.findViewById((R.id.btn_powerMinOne))
         btn_powerMinOne.setOnClickListener{
+            BaseModeFragment.stringList.add("1/(")
             calculator.appendFunction("(1/(") { n1 : Double -> (1 / n1) }
         }
         btn_expPowX = view.findViewById((R.id.btn_expPowX))
         btn_expPowX.setOnClickListener{
+            BaseModeFragment.stringList.add("e^(")
             calculator.appendFunction("e^(") { n1 : Double -> (exp(n1)) }
         }
         btn_square = view.findViewById((R.id.btn_square))
@@ -95,8 +105,12 @@ class ScienceModeFragment : Fragment() {
             calculator.appendOperation(Operations.POWER)
             val textView = mainActivity?.getinputText()
             calculator.appendNumber("2")
+            BaseModeFragment.stringList.add("^2(")
             if(textView?.text.toString() == "2"){
                 calculator.delete()
+                if (BaseModeFragment.stringList.isNotEmpty()) {
+                    BaseModeFragment.stringList.removeAt(BaseModeFragment.stringList.size - 1)
+                }
             }
 
         }

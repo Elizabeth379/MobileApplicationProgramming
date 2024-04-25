@@ -46,7 +46,9 @@ class BaseModeFragment : Fragment() {
     val db = Firebase.firestore
     private var mainActivity: MainActivity? = null
 
-    val stringList: ArrayList<String> = ArrayList()
+    companion object {
+        val stringList: ArrayList<String> = ArrayList()
+    }
 
     private lateinit var calculator : Calculator
     private lateinit var vibrator : Vibrator
