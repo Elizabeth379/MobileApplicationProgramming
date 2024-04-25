@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
     private lateinit var resultText : TextView
     private lateinit var btn_2nd: Button
     private lateinit var btn_theme: Button
+    private lateinit var btn_history: Button
     private lateinit var vibrator : Vibrator
     private lateinit var lSwipeDetector: GestureDetectorCompat
     private lateinit var mainLayout: ConstraintLayout
@@ -142,6 +143,14 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
             finish()
         }
         btn_theme.bringToFront()
+
+        btn_history = findViewById(R.id.btn_history)
+        btn_history.setOnClickListener{
+            val j = Intent(this, HistoryActivity::class.java)
+            startActivity(j)
+            finish()
+        }
+        btn_history.bringToFront()
 
         inputText.setMovementMethod(ScrollingMovementMethod())
 
@@ -370,6 +379,8 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
     fun setButtonOneColor(colorResId: Int) {
         btn_theme = findViewById(R.id.btn_theme)
         btn_theme.setBackgroundColor(getResources().getColor(colorResId))
+        btn_history = findViewById(R.id.btn_history)
+        btn_history.setBackgroundColor(getResources().getColor(colorResId))
         btn_2nd = findViewById(R.id.btn_2nd)
         btn_2nd.setBackgroundColor(getResources().getColor(colorResId))
         btn_equal = findViewById(R.id.btn_equal)
@@ -379,6 +390,8 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
     fun setButtonOneTextColor(colorResId: Int) {
         btn_theme = findViewById(R.id.btn_theme)
         btn_theme.setTextColor(getResources().getColor(colorResId))
+        btn_history = findViewById(R.id.btn_history)
+        btn_history.setTextColor(getResources().getColor(colorResId))
         btn_2nd = findViewById(R.id.btn_2nd)
         btn_2nd.setTextColor(getResources().getColor(colorResId))
         btn_equal = findViewById(R.id.btn_equal)
