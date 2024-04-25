@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
         private const val SWIPE_MIN_VELOCITY = 200
     }
 
-    private lateinit var inputText : TextView
+    lateinit var inputText : TextView
     private lateinit var resultText : TextView
     private lateinit var btn_2nd: Button
     private lateinit var btn_theme: Button
@@ -259,24 +259,24 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.green)
 
                 setButtonOneColor(R.color.gr_butt)
-                setButtonColor(R.color.breeze)
-                setNumberColor(R.color.orange)
-                setOperationColor(R.color.darkorange)
+                setButtonColor(R.color.purple)
+                setNumberColor(R.color.breeze)
+                setOperationColor(R.color.green)
 
                 if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setFuncColor(R.color.darkbreeze)
+                    setFuncColor(R.color.gr_butt)
                 }
             }
             3 -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.breeze)
 
                 setButtonOneColor(R.color.br_butt)
-                setButtonColor(R.color.green)
-                setNumberColor(R.color.yellow)
-                setOperationColor(R.color.darkyellow)
+                setButtonColor(R.color.tomato)
+                setNumberColor(R.color.moon)
+                setOperationColor(R.color.breeze)
 
                 if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setFuncColor(R.color.darkgreen)
+                    setFuncColor(R.color.br_butt)
                 }
             }
             4 -> {
@@ -284,22 +284,23 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
 
                 setButtonOneColor(R.color.mo_butt)
                 setButtonColor(R.color.purple)
-                setNumberColor(R.color.sky)
-                setOperationColor(R.color.darksky)
+                setNumberColor(R.color.breeze)
+                setOperationColor(R.color.moon)
 
                 if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setFuncColor(R.color.darkpurple)
+                    setFuncColor(R.color.mo_butt)
                 }
             }
             else -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.base)
 
-                setButtonColor(R.color.blue)
-                setNumberColor(R.color.pink)
-                setOperationColor(R.color.darkpink)
+                setButtonOneColor(R.color.orange)
+                setButtonColor(R.color.tomato)
+                setNumberColor(R.color.white)
+                setOperationColor(R.color.light_orange)
 
                 if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setFuncColor(R.color.violet)
+                    setFuncColor(R.color.orange)
                 }
             }
         }
@@ -339,7 +340,7 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
         setAppTheme(savedThemeId)
         applyTheme(savedThemeId)
 
-        db.collection("theme").document("current")
+        db.collection("theme").document("Hz9l4wlRM1jtDmUQNS0p")
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 val dbThemeId = documentSnapshot.getLong("theme_id")?.toInt() ?: return@addOnSuccessListener

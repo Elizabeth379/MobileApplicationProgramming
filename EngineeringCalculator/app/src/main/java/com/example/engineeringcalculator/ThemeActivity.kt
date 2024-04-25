@@ -2,11 +2,13 @@ package com.example.engineeringcalculator
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.engineeringcalculator.R
 import android.view.View
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -28,20 +30,20 @@ class ThemeActivity : AppCompatActivity() {
 
         btn_theme1 = findViewById(R.id.btn_theme1)
         btn_theme1.setOnClickListener{
-            changeTheme(1)
+            setAndReturnAppTheme(1)
         }
         btn_theme2 = findViewById(R.id.btn_theme2)
         btn_theme2.setOnClickListener{
-            changeTheme(2)
+            setAndReturnAppTheme(2)
 
         }
         btn_theme3 = findViewById(R.id.btn_theme3)
         btn_theme3.setOnClickListener{
-            changeTheme(3)
+            setAndReturnAppTheme(3)
         }
         btn_theme4 = findViewById(R.id.btn_theme4)
         btn_theme4.setOnClickListener{
-            changeTheme(4)
+            setAndReturnAppTheme(4)
         }
 
     }
@@ -52,6 +54,23 @@ class ThemeActivity : AppCompatActivity() {
         finish()
         super.onBackPressed()
     }
+
+    private fun setAndReturnAppTheme(themeId: Int) {
+        val themeData = hashMapOf("theme_id" to themeId)
+
+        db.collection("theme")
+            .document("Hz9l4wlRM1jtDmUQNS0p")
+            .set(themeData)
+            .addOnSuccessListener {
+                Toast.makeText(this@ThemeActivity, "Theme ID successfully written to Firestore!", Toast.LENGTH_SHORT).show()
+                changeTheme(themeId)
+            }
+            .addOnFailureListener {
+                Toast.makeText(this@ThemeActivity, "Theme ID NOT successfully written to Firestore!", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
 
     private fun changeTheme(themeId: Int) {
         when (themeId) {
