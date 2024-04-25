@@ -8,4 +8,17 @@
     <color name="purple">#6a11cb</color>
     <color name="tomato">#FF0000</color>
     <color name="blue">#2575fc</color>
+
+    <color name="base">#E0CFFF</color>
+
+    <color name="green">#BFFFBA</color>
+    <color name="gr_butt">#4DFF50</color>
+    <color name="gr_back">#0090FF</color>
+
+    <color name="breeze">#B2FFFF</color>
+    <color name="br_butt">#4DC1FF</color>
+    <color name="br_back">#FFE600</color>
+
+    <color name="moon">#FFFA99</color>
+    <color name="mo_butt">#FFF64D</color>
 </resources>
