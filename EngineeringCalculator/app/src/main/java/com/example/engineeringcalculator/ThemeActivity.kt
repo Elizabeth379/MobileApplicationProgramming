@@ -46,6 +46,21 @@ class ThemeActivity : AppCompatActivity() {
             setAndReturnAppTheme(4)
         }
 
+        applySavedTheme()
+
+    }
+
+    private fun applySavedTheme() {
+
+        db.collection("theme").document("Hz9l4wlRM1jtDmUQNS0p")
+            .get()
+            .addOnSuccessListener { documentSnapshot ->
+                val dbThemeId = documentSnapshot.getLong("theme_id")?.toInt() ?: return@addOnSuccessListener
+                changeTheme(dbThemeId)
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this@ThemeActivity, "Failed to read theme ID from Firestore!", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onBackPressed() {
@@ -133,12 +148,16 @@ class ThemeActivity : AppCompatActivity() {
 
                 btn_theme1 = findViewById(R.id.btn_theme1)
                 btn_theme1.setBackgroundColor(ContextCompat.getColor(this, R.color.mo_butt))
+                btn_theme1.setTextColor(ContextCompat.getColor(this, R.color.black))
                 btn_theme2 = findViewById(R.id.btn_theme2)
                 btn_theme2.setBackgroundColor(ContextCompat.getColor(this, R.color.mo_butt))
+                btn_theme2.setTextColor(ContextCompat.getColor(this, R.color.black))
                 btn_theme3 = findViewById(R.id.btn_theme3)
                 btn_theme3.setBackgroundColor(ContextCompat.getColor(this, R.color.mo_butt))
+                btn_theme3.setTextColor(ContextCompat.getColor(this, R.color.black))
                 btn_theme4 = findViewById(R.id.btn_theme4)
                 btn_theme4.setBackgroundColor(ContextCompat.getColor(this, R.color.mo_butt))
+                btn_theme4.setTextColor(ContextCompat.getColor(this, R.color.black))
             }
         }
     }

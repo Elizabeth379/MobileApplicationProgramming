@@ -113,7 +113,6 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
         if (isDemo())
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        FirebaseApp.initializeApp(this)
 
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         inputText = findViewById(R.id.textViewInput)
@@ -156,6 +155,9 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager?.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         sensorManager?.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
+
+        applySavedTheme()
+
 
     }
 
@@ -246,6 +248,10 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
             1 -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.base)
 
+                val constraintLayout: ConstraintLayout = findViewById(R.id.science)
+                val gradientDrawable = ContextCompat.getDrawable(this, R.drawable.cool_gradient)
+                constraintLayout.background = gradientDrawable
+
                 setButtonOneColor(R.color.orange)
                 setButtonColor(R.color.tomato)
                 setNumberColor(R.color.white)
@@ -257,6 +263,9 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
             }
             2 -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+                val constraintLayout: ConstraintLayout = findViewById(R.id.science)
+                val gradientDrawable = ContextCompat.getDrawable(this, R.drawable.green_gradient)
+                constraintLayout.background = gradientDrawable
 
                 setButtonOneColor(R.color.gr_butt)
                 setButtonColor(R.color.purple)
@@ -270,6 +279,10 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
             3 -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.breeze)
 
+                val constraintLayout: ConstraintLayout = findViewById(R.id.science)
+                val gradientDrawable = ContextCompat.getDrawable(this, R.drawable.blue_gradient)
+                constraintLayout.background = gradientDrawable
+
                 setButtonOneColor(R.color.br_butt)
                 setButtonColor(R.color.tomato)
                 setNumberColor(R.color.moon)
@@ -281,8 +294,12 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
             }
             4 -> {
                 window.statusBarColor = ContextCompat.getColor(this, R.color.moon)
+                val constraintLayout: ConstraintLayout = findViewById(R.id.science)
+                val gradientDrawable = ContextCompat.getDrawable(this, R.drawable.yellow_gradient)
+                constraintLayout.background = gradientDrawable
 
                 setButtonOneColor(R.color.mo_butt)
+                setButtonOneTextColor(R.color.black)
                 setButtonColor(R.color.purple)
                 setNumberColor(R.color.breeze)
                 setOperationColor(R.color.moon)
@@ -325,31 +342,15 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
         return "demo" in version
     }
 
-    private fun saveThemeToSharedPreferences(themeId: Int) {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val editor = preferences.edit()
-        editor.putInt("theme_id", themeId)
-        editor.apply()
-    }
 
     private fun applySavedTheme() {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-
-        val savedThemeId = preferences.getInt("theme_id", 1)
-
-        setAppTheme(savedThemeId)
-        applyTheme(savedThemeId)
 
         db.collection("theme").document("Hz9l4wlRM1jtDmUQNS0p")
             .get()
             .addOnSuccessListener { documentSnapshot ->
                 val dbThemeId = documentSnapshot.getLong("theme_id")?.toInt() ?: return@addOnSuccessListener
-
-                if (dbThemeId != savedThemeId) {
-                    saveThemeToSharedPreferences(dbThemeId)
                     setAppTheme(dbThemeId)
                     applyTheme(dbThemeId)
-                }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this@MainActivity, "Failed to read theme ID from Firestore!", Toast.LENGTH_SHORT).show()
@@ -375,99 +376,109 @@ class MainActivity : AppCompatActivity(), Connector, SensorEventListener {
         btn_equal.setBackgroundColor(getResources().getColor(colorResId))
     }
 
+    fun setButtonOneTextColor(colorResId: Int) {
+        btn_theme = findViewById(R.id.btn_theme)
+        btn_theme.setTextColor(getResources().getColor(colorResId))
+        btn_2nd = findViewById(R.id.btn_2nd)
+        btn_2nd.setTextColor(getResources().getColor(colorResId))
+        btn_equal = findViewById(R.id.btn_equal)
+        btn_equal.setTextColor(getResources().getColor(colorResId))
+    }
+
     fun setButtonColor(colorResId: Int) {
         btn_ac = findViewById(R.id.btn_ac)
-        btn_ac.setBackgroundColor(getResources().getColor(colorResId))
+        btn_ac.setTextColor(getResources().getColor(colorResId))
         btn_back = findViewById(R.id.btn_back)
-        btn_back.setBackgroundColor(getResources().getColor(colorResId))
+        btn_back.setTextColor(getResources().getColor(colorResId))
+
     }
 
     fun setNumberColor(colorResId: Int) {
         btn_0 = findViewById(R.id.btn_0)
-        btn_0.setBackgroundColor(getResources().getColor(colorResId))
+        btn_0.setTextColor(getResources().getColor(colorResId))
         btn_1 = findViewById(R.id.btn_1)
-        btn_1.setBackgroundColor(getResources().getColor(colorResId))
+        btn_1.setTextColor(getResources().getColor(colorResId))
         btn_2 = findViewById(R.id.btn_2)
-        btn_2.setBackgroundColor(getResources().getColor(colorResId))
+        btn_2.setTextColor(getResources().getColor(colorResId))
         btn_3 = findViewById(R.id.btn_3)
-        btn_3.setBackgroundColor(getResources().getColor(colorResId))
+        btn_3.setTextColor(getResources().getColor(colorResId))
         btn_4 = findViewById(R.id.btn_4)
-        btn_4.setBackgroundColor(getResources().getColor(colorResId))
+        btn_4.setTextColor(getResources().getColor(colorResId))
         btn_5 = findViewById(R.id.btn_5)
-        btn_5.setBackgroundColor(getResources().getColor(colorResId))
+        btn_5.setTextColor(getResources().getColor(colorResId))
         btn_6 = findViewById(R.id.btn_6)
-        btn_6.setBackgroundColor(getResources().getColor(colorResId))
+        btn_6.setTextColor(getResources().getColor(colorResId))
         btn_7 = findViewById(R.id.btn_7)
-        btn_7.setBackgroundColor(getResources().getColor(colorResId))
+        btn_7.setTextColor(getResources().getColor(colorResId))
         btn_8 = findViewById(R.id.btn_8)
-        btn_8.setBackgroundColor(getResources().getColor(colorResId))
+        btn_8.setTextColor(getResources().getColor(colorResId))
         btn_9 = findViewById(R.id.btn_9)
-        btn_9.setBackgroundColor(getResources().getColor(colorResId))
+        btn_9.setTextColor(getResources().getColor(colorResId))
         btn_dot = findViewById(R.id.btn_dot)
-        btn_dot.setBackgroundColor(getResources().getColor(colorResId))
+        btn_dot.setTextColor(getResources().getColor(colorResId))
     }
 
     fun setOperationColor(colorResId: Int) {
         btn_multiply = findViewById(R.id.btn_multiply)
-        btn_multiply.setBackgroundColor(getResources().getColor(colorResId))
+        btn_multiply.setTextColor(getResources().getColor(colorResId))
         btn_minus = findViewById(R.id.btn_minus)
-        btn_minus.setBackgroundColor(getResources().getColor(colorResId))
+        btn_minus.setTextColor(getResources().getColor(colorResId))
         btn_plus = findViewById(R.id.btn_plus)
-        btn_plus.setBackgroundColor(getResources().getColor(colorResId))
+        btn_plus.setTextColor(getResources().getColor(colorResId))
         btn_division = findViewById(R.id.btn_division)
-        btn_division.setBackgroundColor(getResources().getColor(colorResId))
+        btn_division.setTextColor(getResources().getColor(colorResId))
         btn_parenthesis_l = findViewById(R.id.btn_parenthesis_l)
-        btn_parenthesis_l.setBackgroundColor(getResources().getColor(colorResId))
+        btn_parenthesis_l.setTextColor(getResources().getColor(colorResId))
         btn_parenthesis_r = findViewById(R.id.btn_parenthesis_r)
-        btn_parenthesis_r.setBackgroundColor(getResources().getColor(colorResId))
+        btn_parenthesis_r.setTextColor(getResources().getColor(colorResId))
     }
 
     fun setFuncColor(colorResId: Int) {
         btn_sin = findViewById(R.id.btn_sin)
-        btn_sin.setBackgroundColor(getResources().getColor(colorResId))
+        btn_sin.setTextColor(getResources().getColor(colorResId))
 
         btn_cos = findViewById(R.id.btn_cos)
-        btn_cos.setBackgroundColor(getResources().getColor(colorResId))
+        btn_cos.setTextColor(getResources().getColor(colorResId))
 
         btn_tan = findViewById(R.id.btn_tan)
-        btn_tan.setBackgroundColor(getResources().getColor(colorResId))
+        btn_tan.setTextColor(getResources().getColor(colorResId))
 
         btn_rad = findViewById(R.id.btn_rad)
-        btn_rad.setBackgroundColor(getResources().getColor(colorResId))
+        btn_rad.setTextColor(getResources().getColor(colorResId))
 
         btn_sqrt = findViewById(R.id.btn_sqrt)
-        btn_sqrt.setBackgroundColor(getResources().getColor(colorResId))
+        btn_sqrt.setTextColor(getResources().getColor(colorResId))
 
         btn_ln = findViewById(R.id.btn_ln)
-        btn_ln.setBackgroundColor(getResources().getColor(colorResId))
+        btn_ln.setTextColor(getResources().getColor(colorResId))
 
         btn_lg = findViewById(R.id.btn_lg)
-        btn_lg.setBackgroundColor(getResources().getColor(colorResId))
+        btn_lg.setTextColor(getResources().getColor(colorResId))
 
 
         btn_log = findViewById(R.id.btn_log)
-        btn_log.setBackgroundColor(getResources().getColor(colorResId))
+        btn_log.setTextColor(getResources().getColor(colorResId))
 
         btn_powerMinOne = findViewById(R.id.btn_powerMinOne)
-        btn_powerMinOne.setBackgroundColor(getResources().getColor(colorResId))
+        btn_powerMinOne.setTextColor(getResources().getColor(colorResId))
 
         btn_expPowX = findViewById(R.id.btn_expPowX)
-        btn_expPowX.setBackgroundColor(getResources().getColor(colorResId))
+        btn_expPowX.setTextColor(getResources().getColor(colorResId))
 
         btn_square = findViewById(R.id.btn_square)
-        btn_square.setBackgroundColor(getResources().getColor(colorResId))
+        btn_square.setTextColor(getResources().getColor(colorResId))
 
         btn_power = findViewById(R.id.btn_power)
-        btn_power.setBackgroundColor(getResources().getColor(colorResId))
+        btn_power.setTextColor(getResources().getColor(colorResId))
 
         btn_module = findViewById(R.id.btn_module)
-        btn_module.setBackgroundColor(getResources().getColor(colorResId))
+        btn_module.setTextColor(getResources().getColor(colorResId))
 
         btn_pi = findViewById(R.id.btn_pi)
-        btn_pi.setBackgroundColor(getResources().getColor(colorResId))
+        btn_pi.setTextColor(getResources().getColor(colorResId))
 
         btn_exp = findViewById(R.id.btn_exp)
-        btn_exp.setBackgroundColor(getResources().getColor(colorResId))
+        btn_exp.setTextColor(getResources().getColor(colorResId))
     }
 
 
