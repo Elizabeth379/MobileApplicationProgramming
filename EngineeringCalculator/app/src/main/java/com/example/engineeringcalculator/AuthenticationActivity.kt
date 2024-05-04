@@ -6,13 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
 
 
-class SplashActivity : AppCompatActivity() {
+class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash)
+        setContentView(R.layout.authentication)
 
         Handler().postDelayed({
-            val i = Intent(this, AuthenticationActivity::class.java)
+            val i = Intent(this, MainActivity::class.java)
             startActivity(i)
             finish()
         }, 5000)
