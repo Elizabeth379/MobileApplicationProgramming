@@ -5,41 +5,9 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@drawable/cool_gradient"
-    android:id="@+id/auth"
-    tools:context=".AuthenticationActivity">
+    android:id="@+id/reg"
+    tools:context=".RegistrationActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/biometrics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:text="Log in using biometrics"
-            android:textSize="@dimen/text_size_large20"
-            />
-
-        <Space
-            android:id="@+id/space0"
-            android:layout_width="5dp"
-            android:layout_height="40dp"
-            />
-
-        <Button
-            android:id="@+id/SignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Sign in"
-            android:textSize="@dimen/text_size_large20"
-            android:background="@android:color/transparent"
-            />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,6 +15,17 @@
         android:orientation="vertical"
         android:layout_margin="30dp"
         android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/registrationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Enter your email"
+            android:textColor="#FFCCFC"
+            android:textSize="@dimen/text_size_large28"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/password_ed"
@@ -236,7 +215,7 @@
                 </Button>
 
                 <Button
-                    android:id="@+id/LogIn"
+                    android:id="@+id/regButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -248,21 +227,5 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <Button
-                android:id="@+id/pin_forgot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Forgot your PIN?"
-                android:textSize="@dimen/text_size_large24"
-                android:background="@android:color/transparent"
-                />
-
-        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
