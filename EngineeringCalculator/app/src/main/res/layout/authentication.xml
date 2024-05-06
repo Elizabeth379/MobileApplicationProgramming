@@ -20,6 +20,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:text="Log in using biometrics"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_large20"
             />
 
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sign in"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_large20"
             android:background="@android:color/transparent"
             />
@@ -261,6 +263,7 @@
                 android:text="Forgot your PIN?"
                 android:textSize="@dimen/text_size_large24"
                 android:background="@android:color/transparent"
+                android:textColor="@color/white"
                 />
 
         </LinearLayout>
