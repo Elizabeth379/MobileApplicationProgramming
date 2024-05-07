@@ -6,7 +6,7 @@
     android:padding="16dp"
     android:background="@drawable/cool_gradient"
     android:id="@+id/reg"
-    tools:context=".RegistrationActivity">
+    tools:context=".ForgetPinActivity">
 
 
     <LinearLayout

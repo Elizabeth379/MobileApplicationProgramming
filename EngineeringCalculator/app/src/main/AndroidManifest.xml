@@ -28,6 +28,9 @@
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
+            android:name=".ForgetPinActivity"
+            android:exported="false" />
+        <activity
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity

@@ -1,5 +1,6 @@
 package com.example.engineeringcalculator
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,12 +19,11 @@ import com.google.firebase.firestore.firestore
 
 class AuthenticationActivity : AppCompatActivity() {
     private val db = Firebase.firestore
-    private var passCode: String = ""
 
     private var isHaveBiometric: Boolean = true
     private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var activityF: Intent
     private lateinit var activityM: Intent
-    private lateinit var activityR: Intent
 
     private lateinit var passwordET: EditText
     private lateinit var bOne: Button
@@ -44,7 +44,7 @@ class AuthenticationActivity : AppCompatActivity() {
         setContentView(R.layout.authentication)
 
         activityM = Intent(this, MainActivity::class.java)
-        activityR = Intent(this, RegistrationActivity::class.java)
+        activityF = Intent(this, ForgetPinActivity::class.java)
 
         initializeButtons()
         passwordET = findViewById(R.id.password_ed)
@@ -132,15 +132,29 @@ class AuthenticationActivity : AppCompatActivity() {
 
     private fun initializeButtons() {
         val logInButton = findViewById<Button>(R.id.LogIn)
-        val signInButton = findViewById<Button>(R.id.SignIn)
+        val bForgetPin = findViewById<Button>(R.id.pin_forgot)
 
-        signInButton.setOnClickListener {
-            startActivity(activityR)
-        }
 
         logInButton.setOnClickListener {
-            //checkPassword()
+            val enteredPassword = passwordET.text.toString()
+            if (checkPassword(enteredPassword)) {
+                startActivity(activityM)
+                finish()
+            } else {
+                Toast.makeText(this, "Wrong PIN", Toast.LENGTH_SHORT).show()
+            }
         }
+
+        bForgetPin.setOnClickListener {
+                startActivity(activityF)
+
+        }
+    }
+
+    private fun checkPassword(password: String): Boolean {
+        val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val savedPin = sharedPreferences.getString("pin", "")
+        return savedPin == password
     }
 
 

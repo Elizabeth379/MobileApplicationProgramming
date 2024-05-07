@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 
-class RegistrationActivity : AppCompatActivity() {
+class ForgetPinActivity : AppCompatActivity() {
 
     private val db = Firebase.firestore
 
@@ -36,7 +36,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var bOK: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.registration)
+        setContentView(R.layout.forget_pin)
 
 
         activityM = Intent(this, MainActivity::class.java)
@@ -119,37 +119,36 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         bOK.setOnClickListener {
-            val pin = passwordET.text.toString()
             val email = emailET.text.toString()
-            val reg_email = Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
+            val newPassword = passwordET.text.toString()
             val reg_pin = Regex("\\d{4}")
 
-            if (reg_email.matches(email) && reg_pin.matches(pin)) {
-                saveCredentials(pin, email)
-
-                val intent = Intent(this, MainActivity::class.java)
+            if (reg_pin.matches(newPassword) && changePassword(email, newPassword)) {
+                Toast.makeText(this, "PIN successfully changed", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, AuthenticationActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(
-                    this,
-                    "Enter PIN and email.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "Email is not found/PIN is wrong.", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         applySavedTheme()
     }
 
-    private fun saveCredentials(pin: String, email: String) {
+    private fun changePassword(email: String, newPassword: String): Boolean {
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("pin", pin)
-        editor.putString("email", email)
-        editor.putBoolean("isRegistered", true)
-        editor.apply()
+        val savedEmail = sharedPreferences.getString("email", "")
+        if (savedEmail == email) {
+            val editor = sharedPreferences.edit()
+            editor.putString("pin", newPassword)
+            editor.apply()
+            return true
+        }
+        return false
     }
+
 
 
     private fun applySavedTheme() {
@@ -161,7 +160,7 @@ class RegistrationActivity : AppCompatActivity() {
                 changeTheme(dbThemeId)
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this@RegistrationActivity, "Failed to read theme ID from Firestore!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ForgetPinActivity, "Failed to read theme ID from Firestore!", Toast.LENGTH_SHORT).show()
             }
     }
 
